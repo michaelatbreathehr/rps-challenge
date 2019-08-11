@@ -1,14 +1,17 @@
-require 'sinatra'
+require 'sinatra/base'
+class RpsChallenge < Sinatra::Base
+	enable :sessions
 
+	get '/' do
+		@players_name = params[:players_name]
+		erb :index		
+	end
 
-get '/' do
-	erb :home
+	post '/names' do
+		@players_name = params[:players_name]
+		erb :play
+	end
+
+	run! if app_file == $0
 end
 
-get '/welcome' do
-
-end
-
-get '/result' do
-
-end
